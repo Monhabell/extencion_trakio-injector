@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gestión de Scripts</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      width: 100px;
+    }
+    h3 {
+      margin-top: 0;
+    }
+    button {
+      display: block;
+      margin-top: 10px;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+  <!-- Cargar los scripts externos -->
+  <script src="popup.js"></script>
+</head>
+<body>
+  <h3>Selecciona Entorno</h3>
+  <label><input type="checkbox" id="scriptEducativo"> Educativo</label>
+  <label><input type="checkbox" id="scriptComunitario"> Comunitario</label>
+  <label><input type="checkbox" id="scriptLaboral"> Laboral</label>
+  <label><input type="checkbox" id="scriptInstitucional"> Institucional</label>
+  <button id="apply">Aplicar</button>
+</body>
+</html>
