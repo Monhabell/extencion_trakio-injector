@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let scriptLaboral = "laboral.js";
     let scriptInstitucional = "institucional.js";
 
-
     document.getElementById("apply").addEventListener("click", () => {
         console.log("aplicado");
         const selectedScripts = [];
@@ -15,7 +14,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Enviar los scripts seleccionados al archivo injector.js
         chrome.storage.local.set({ selectedScripts }, () => {
-            alert("Scripts configurados. Recarga la página para aplicar.");
+            //alert("Entorno configurados.");
+            // Enviar un mensaje para inyectar los scripts
+            chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+                chrome.tabs.sendMessage(tabs[0].id, { action: "injectScripts" });
+            });
         });
     });
 
