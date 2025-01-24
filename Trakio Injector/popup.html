@@ -5,10 +5,10 @@
   <style>
     body {
       font-family: 'Arial', sans-serif;
-      background-color: #0b0b0f;
+      background-color: #000030;
       color: #ffffff;
       margin: 0;
-      padding: 20px;
+      padding: 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -19,7 +19,7 @@
     .header {
       display: flex;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 5px;
     }
 
     .header img {
@@ -78,6 +78,22 @@
     button:hover {
       background-color: #8e0000;
     }
+
+    .button-link {
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: #007bff; /* Color del botón */
+      color: white; /* Letra blanca */
+      text-decoration: none; /* Sin subrayado */
+      border-radius: 5px; /* Bordes redondeados */
+      font-family: Arial, sans-serif;
+      margin-top: 5px;
+  }
+  
+  .button-link:hover {
+      background-color: #003a77; /* Color al pasar el mouse */
+  }
+  
   </style>
   <!-- Cargar los scripts externos -->
   <script src="popup.js"></script>
@@ -103,5 +119,10 @@
     </label>
   </div>
   <button id="apply">Aplicar</button>
+
+  <div class="link">
+    <a href="https://www.trakio.pro/" target="_blank" class="button-link">trakio.pro</a>
+  </div>
+
 </body>
 </html>
