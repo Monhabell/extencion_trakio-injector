@@ -30,16 +30,8 @@
     }
   },
 
-  "permissions": [
-    "tabs", 
-    "webNavigation", 
-    "webRequest", 
-    "storage", 
-    "contextMenus", 
-    "clipboardWrite", 
-    "cookies", 
-    "alarms", 
-    "scripting"
+  "permissions": [ 
+    "storage"
   ],
 
   "host_permissions": [
