@@ -4,24 +4,39 @@ document.addEventListener("DOMContentLoaded", () => {
     let scriptLaboral = "laboral.js";
     let scriptInstitucional = "institucional.js";
 
-    document.getElementById("apply").addEventListener("click", () => {
-        console.log("aplicado");
+    const applyButton = document.getElementById("apply");
+    const disableButton = document.getElementById("disable");
+
+    // Evento para aplicar scripts seleccionados
+    applyButton.addEventListener("click", () => {
+        console.log("Aplicado");
         let selectedScripts = [];
 
-        if (document.getElementById("Ningun_scrip").checked) {
-            selectedScripts = []; // No cargar ningún script
-        } else {
-            if (document.getElementById("scriptEducativo").checked) selectedScripts.push(scriptEducativo);
-            if (document.getElementById("scriptComunitario").checked) selectedScripts.push(scriptComunitario);
-            if (document.getElementById("scriptLaboral").checked) selectedScripts.push(scriptLaboral);
-            if (document.getElementById("scriptInstitucional").checked) selectedScripts.push(scriptInstitucional);
-        }
+        if (document.getElementById("scriptEducativo").checked) selectedScripts.push(scriptEducativo);
+        if (document.getElementById("scriptComunitario").checked) selectedScripts.push(scriptComunitario);
+        if (document.getElementById("scriptLaboral").checked) selectedScripts.push(scriptLaboral);
+        if (document.getElementById("scriptInstitucional").checked) selectedScripts.push(scriptInstitucional);
 
-        // Guardar en storage
+        // Guardar en storage y enviar mensaje para inyectar scripts
         chrome.storage.local.set({ selectedScripts }, () => {
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
                 chrome.tabs.sendMessage(tabs[0].id, { action: "injectScripts" });
             });
+        });
+    });
+
+    // Evento para desactivar scripts
+    disableButton.addEventListener("click", () => {
+        console.log("Scripts desactivados.");
+        chrome.storage.local.set({ selectedScripts: [] }, () => {
+            chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+                chrome.tabs.sendMessage(tabs[0].id, { action: "injectScripts" });
+            });
+        });
+
+        // Desmarcar todas las casillas
+        document.querySelectorAll("input[name='script']").forEach((input) => {
+            input.checked = false;
         });
     });
 
@@ -33,32 +48,5 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("scriptComunitario").checked = scripts.includes(scriptComunitario);
         document.getElementById("scriptLaboral").checked = scripts.includes(scriptLaboral);
         document.getElementById("scriptInstitucional").checked = scripts.includes(scriptInstitucional);
-
-        // Si no hay scripts guardados, seleccionar "desactivar scripts"
-        if (scripts.length === 0) {
-            document.getElementById("Ningun_scrip").checked = true;
-        }
-    });
-
-    // Si se selecciona "Desactivar scripts", desmarcar los demás
-    document.getElementById("Ningun_scrip").addEventListener("change", function () {
-        if (this.checked) {
-            document.querySelectorAll("input[name='script']").forEach((input) => {
-                if (input.id !== "Ningun_scrip") {
-                    input.checked = false;
-                }
-            });
-        }
-    });
-
-    // Si se selecciona cualquier otro, desmarcar "Desactivar scripts"
-    document.querySelectorAll("input[name='script']").forEach((input) => {
-        if (input.id !== "Ningun_scrip") {
-            input.addEventListener("change", function () {
-                if (this.checked) {
-                    document.getElementById("Ningun_scrip").checked = false;
-                }
-            });
-        }
     });
 });
