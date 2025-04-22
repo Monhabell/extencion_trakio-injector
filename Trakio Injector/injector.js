@@ -1,46 +1,11 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const applyButton = document.getElementById("apply");
-    const disableButton = document.getElementById("disable");
+console.log("Codigo preparado")
 
-    // Cargar scripts almacenados previamente
-    chrome.storage.local.get("selectedScripts", (data) => {
-        const selectedScripts = data.selectedScripts || [];
-
-        // Marcar la opción seleccionada en la interfaz
-        if (selectedScripts.length > 0) {
-            const radioButtons = document.querySelectorAll('input[name="script"]');
-            radioButtons.forEach((radio) => {
-                if (selectedScripts.includes(radio.nextSibling.textContent.trim())) {
-                    radio.checked = true;
-                }
-            });
-        }
-    });
-
-    // Evento para aplicar scripts
-    applyButton.addEventListener("click", () => {
-        const selectedScript = document.querySelector('input[name="script"]:checked');
-        if (!selectedScript) {
-            alert("Por favor, selecciona un entorno.");
-            return;
-        }
-
-        const scriptName = selectedScript.nextSibling.textContent.trim();
-        chrome.storage.local.set({ selectedScripts: [scriptName] }, () => {
-            console.log("Script seleccionado:", scriptName);
-            chrome.runtime.sendMessage({ action: "injectScripts" });
-        });
-    });
-
-    // Evento para desactivar scripts
-    disableButton.addEventListener("click", () => {
-        chrome.storage.local.set({ selectedScripts: [] }, () => {
-            console.log("Scripts desactivados.");
-            chrome.runtime.sendMessage({ action: "injectScripts" });
-        });
-    });
+chrome.storage.local.get("selectedScripts", (data) => {
+    const scripts = data.selectedScripts || [];
+    injectScripts(scripts);
 });
 
+// Función para inyectar scripts
 // Función para inyectar scripts
 function injectScripts(scripts) {
     // Eliminar scripts previamente inyectados
@@ -57,10 +22,10 @@ function injectScripts(scripts) {
 
     // Mapeo de los scripts disponibles
     const scriptMap = {
-        "Educativo": "https://www.trakio.pro/js/calidad/educativo2.js",
-        "Comunitario": "https://www.trakio.pro/js/calidad/Comunitario.js",
-        "Laboral": "https://www.trakio.pro/js/calidad/laboral.js",
-        "Institucional": "https://www.trakio.pro/js/calidad/institucional.js"
+        "educativo2.js": "https://www.trakio.pro/js/calidad/educativo2.js",
+        "Comunitario.js": "https://www.trakio.pro/js/calidad/Comunitario.js",
+        "laboral.js": "https://www.trakio.pro/js/calidad/laboral.js",
+        "institucional.js": "https://www.trakio.pro/js/calidad/institucional.js"
     };
 
     // Iterar sobre los scripts seleccionados
@@ -88,3 +53,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         });
     }
 });
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action === "refreshPage") {
+        console.log("Recibido: refrescar página.");
+        location.reload();  // 🔥 esto recarga la página
+    }
+});
+

@@ -3,176 +3,170 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gestión de Scripts</title>
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #1a1a3a, #000030);
-      color: #ffffff;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .container {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 25px;
-      border-radius: 15px;
-      text-align: center;
-      width: 320px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(10px);
-    }
-
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 15px;
-    }
-
-    .header img {
-      width: 50px;
-      height: auto;
-      margin-right: 10px;
-    }
-
-    .header h1 {
-      font-size: 22px;
-      color: #fff;
-      margin: 0;
-    }
-
-    h3 {
-      font-size: 18px;
-      margin-bottom: 15px;
-      color: #f0f0f0;
-    }
-
-    .options {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    label {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 16px;
-      cursor: pointer;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 10px;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-    }
-
-    label:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-
-    input[type="radio"] {
-      accent-color: #ff3b3b;
-      transform: scale(1.2);
-    }
-
-    .buttons {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    button {
-      flex: 1;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    #apply {
-      background: linear-gradient(90deg, #ff3b3b, #d50000);
-      color: #ffffff;
-    }
-
-    #apply:hover {
-      background: linear-gradient(90deg, #d50000, #8e0000);
-      transform: scale(1.05);
-    }
-
-    #disable {
-      background: #444;
-      color: #ffffff;
-    }
-
-    #disable:hover {
-      background: #222;
-      transform: scale(1.05);
-    }
-
-    .button-link {
-      display: inline-block;
-      padding: 10px 15px;
-      background: #007bff;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      margin-top: 10px;
-      transition: all 0.3s ease;
-    }
-
-    .button-link:hover {
-      background: #0056b3;
-      transform: scale(1.05);
-    }
-
-  </style>
-  <script src="popup.js"></script>
+  <title>Trakio Injector - Gestión de Entornos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="injector.css">
 </head>
 <body>
 
   <div class="container">
     <div class="header">
-      <img src="icons/logo_temp.png" alt="Logo">
+      <div class="logo-container">
+        <img src="icons/logo_temp.png" alt="Trakio Logo">
+      </div>
       <h1>Trakio Injector</h1>
+      <p class="subtitle">Optimiza tu experiencia web según el entorno</p>
     </div>
 
-    <h3>Selecciona Entorno</h3>
+
+    <h3 style="text-align: center; margin-bottom: 12px; font-weight: 500; color: var(--secondary); font-size: 15px;">Selecciona tu entorno</h3>
     
     <div class="options">
-      <label>
-        <input type="radio" name="script" id="scriptEducativo"> Educativo
-      </label>
-      <label>
-        <input type="radio" name="script" id="scriptComunitario"> Comunitario
-      </label>
-      <label>
-        <input type="radio" name="script" id="scriptLaboral"> Laboral
-      </label>
-      <label>
-        <input type="radio" name="script" id="scriptInstitucional"> Institucional
-      </label>
-     
+      <div class="option-item">
+        <input type="radio" name="script" id="scriptEducativo">
+        <label for="scriptEducativo">
+          <span class="custom-radio"></span>
+          <span class="option-text">Educativo</span>
+          <span class="tooltip">
+            <span class="tooltip-icon">ⓘ</span>
+            <span class="tooltip-text">Activa validadores y reglas de negocio para todas las bases de educativo</span>
+          </span>
+        </label>
+      </div>
+      
+      <div class="option-item">
+        <input type="radio" name="script" id="scriptComunitario">
+        <label for="scriptComunitario">
+          <span class="custom-radio"></span>
+          <span class="option-text">Comunitario</span>
+          <span class="tooltip">
+            <span class="tooltip-icon">ⓘ</span>
+            <span class="tooltip-text">Activa validadores y reglas de negocio para todas las bases de comunitarios</span>
+          </span>
+        </label>
+      </div>
+      
+      <div class="option-item">
+        <input type="radio" name="script" id="scriptLaboral">
+        <label for="scriptLaboral">
+          <span class="custom-radio"></span>
+          <span class="option-text">Laboral</span>
+          <span class="tooltip">
+            <span class="tooltip-icon">ⓘ</span>
+            <span class="tooltip-text">Activa validadores y reglas de negocio para todas las bases de laboral</span>
+          </span>
+        </label>
+      </div>
+      
+      <div class="option-item">
+        <input type="radio" name="script" id="scriptInstitucional">
+        <label for="scriptInstitucional">
+          <span class="custom-radio"></span>
+          <span class="option-text">Institucional</span>
+          <span class="tooltip">
+            <span class="tooltip-icon">ⓘ</span>
+            <span class="tooltip-text">Activa validadores y reglas de negocio para todas las bases de institucional</span>
+          </span>
+        </label>
+      </div>
     </div>
 
-     <div class="buttons">
-      <button id="apply">Aplicar</button>
-      <button id="disable">Desactivar</button>
+    <div class="buttons">
+      <button id="apply" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 6px;">
+          <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Aplicar
+      </button>
+      <button id="disable" class="btn btn-secondary">Desactivar</button>
     </div>
 
-
-    <div class="link">
-      <a href="https://www.trakio.pro/" target="_blank" class="button-link">Visitar trakio.pro</a>
+    <div class="footer">
+      <a href="https://www.trakio.pro/" target="_blank" class="footer-link">
+        Visitar trakio.pro
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 6H6V18H18V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M14 4H20V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M15 9L20 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="https://www.trakio.pro/mecanografia" target="_blank" class="footer-link">
+        Test mecanografia
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 6H6V18H18V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M14 4H20V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M15 9L20 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
     </div>
   </div>
 
+  <script src="popup.js"></script>
+  <script src="injector.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Efecto al seleccionar una opción
+      const options = document.querySelectorAll('.option-item input');
+      options.forEach(option => {
+        option.addEventListener('change', function() {
+          if (this.checked) {
+            const label = this.nextElementSibling;
+            label.classList.add('pulse-effect');
+            setTimeout(() => label.classList.remove('pulse-effect'), 1000);
+          }
+        });
+      });
+
+      // Efecto al hacer hover en los botones
+      const buttons = document.querySelectorAll('.btn');
+      buttons.forEach(button => {
+        button.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-2px)';
+        });
+        button.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0)';
+        });
+      });
+
+      // Simulación de estado activo/inactivo (esto debería ser reemplazado por tu lógica real)
+      const applyBtn = document.getElementById('apply');
+      const disableBtn = document.getElementById('disable');
+      const statusDot = document.querySelector('.status-dot');
+      const statusText = document.querySelector('.status-text');
+      const status = document.querySelector('.status');
+
+      applyBtn.addEventListener('click', function() {
+        const selectedOption = document.querySelector('input[name="script"]:checked');
+        if (selectedOption) {
+          status.classList.add('active');
+          statusText.textContent = 'Extension activa: ' + selectedOption.nextElementSibling.querySelector('.option-text').textContent;
+          
+          // Efecto visual de confirmación
+          this.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 6px;"><path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Aplicado';
+          this.style.background = 'linear-gradient(135deg, var(--success), #00a884)';
+          
+          setTimeout(() => {
+            this.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 6px;"><path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Aplicar';
+            this.style.background = 'linear-gradient(135deg, var(--primary), var(--primary-dark))';
+          }, 1500);
+        }
+      });
+
+      disableBtn.addEventListener('click', function() {
+        status.classList.remove('active');
+        statusText.textContent = 'Extension inactiva';
+        
+        // Efecto visual
+        this.textContent = 'Desactivado';
+        this.style.background = 'var(--gray)';
+        
+        setTimeout(() => {
+          this.textContent = 'Desactivar';
+          this.style.background = 'rgba(255, 255, 255, 0.1)';
+        }, 1500);
+      });
+    });
+  </script>
 </body>
 </html>
